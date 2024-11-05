@@ -2,7 +2,9 @@ import 'package:clean_arch/features/daily_news/data/models/article_model.dart';
 import 'package:clean_arch/global/constants/app_constant.dart';
 import 'package:clean_arch/global/utils/file_operation_util.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class HiveManager {
   HiveManager(
     this._hive, {

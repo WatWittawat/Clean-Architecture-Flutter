@@ -4,7 +4,9 @@ import 'dart:typed_data';
 import 'package:clean_arch/global/database/primitive/primitive_database.dart';
 import 'package:clean_arch/global/database/primitive/primitive_keys.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class HiveEncryption {
   HiveEncryption(
     this._hive,

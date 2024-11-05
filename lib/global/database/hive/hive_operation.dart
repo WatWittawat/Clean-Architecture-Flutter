@@ -1,7 +1,9 @@
 import 'package:clean_arch/global/database/hive/hive_encryption.dart';
 import 'package:clean_arch/global/database/primitive/primitive_database.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class HiveOperation<T> {
   Box<T>? _box;
   final String _key = T.toString();
@@ -12,7 +14,7 @@ class HiveOperation<T> {
   HiveOperation(
     this._hive,
     PrimitiveDatabase primitiveDatabase, {
-    HiveEncryption? encryption,
+    @factoryParam HiveEncryption? encryption,
   }) : encryption = encryption ?? HiveEncryption(_hive, primitiveDatabase);
 
   Future<void> startBox() async {
