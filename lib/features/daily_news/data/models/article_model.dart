@@ -13,13 +13,12 @@ abstract class ArticleModel extends HiveObject with _$ArticleModel {
       typeId: HiveConstants.articleTypeId,
       adapterName: HiveConstants.articleAdapterName)
   factory ArticleModel({
-    @HiveField(1) required int id,
+    @HiveField(1) required String publishedAt,
     @HiveField(2) String? author,
     @HiveField(3) String? title,
     @HiveField(4) String? description,
     @HiveField(5) String? url,
     @HiveField(6) String? urlToImage,
-    @HiveField(7) String? publishedAt,
     @HiveField(8) String? content,
   }) = _ArticleModel;
 

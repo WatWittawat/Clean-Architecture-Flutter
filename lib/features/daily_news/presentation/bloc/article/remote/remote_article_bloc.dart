@@ -33,7 +33,7 @@ class RemoteArticleBloc extends Bloc<RemoteArticleEvent, RemoteArticleState> {
     _GetArticles event,
     Emitter<RemoteArticleState> emit,
   ) async {
-    emit(const _Loading());
+    emit(const RemoteArticleState.loading());
 
     final result = await _getArticleUseCase();
 

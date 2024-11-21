@@ -1,4 +1,5 @@
 import 'package:clean_arch/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
+import 'package:clean_arch/features/daily_news/presentation/widget/article_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,19 +34,23 @@ class DailyNews extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        }, done: (data) {
+        }, done: ($) {
           return ListView.builder(
-            itemCount: data.articles.length,
+            itemCount: $.articles.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(data.articles[index].title ?? ""),
-                subtitle: Text(data.articles[index].description ?? ""),
-              );
+              return ArticleTile(article: $.articles[index]);
             },
           );
         }, error: (_) {
-          return const Center(
-            child: Icon(Icons.refresh),
+          return Center(
+            child: IconButton(
+              icon: const Icon(Icons.refresh),
+              onPressed: () {
+                context
+                    .read<RemoteArticleBloc>()
+                    .add(const RemoteArticleEvent.getArticles());
+              },
+            ),
           );
         });
       },

@@ -1,3 +1,4 @@
+import 'package:clean_arch/features/daily_news/data/data_sources/local/local_article.dart';
 import 'package:clean_arch/features/daily_news/data/models/article_model.dart';
 import 'package:clean_arch/global/database/hive/hive_operation.dart';
 import 'package:clean_arch/global/database/primitive/primitive_database.dart';
@@ -24,4 +25,7 @@ abstract class RegisterModule {
   @lazySingleton
   HiveOperation<ArticleModel> get articleOperation =>
       HiveOperation<ArticleModel>(hive, secureStorageManager);
+
+  @lazySingleton
+  LocalArticle get localArticle => LocalArticleImpl(articleOperation);
 }
