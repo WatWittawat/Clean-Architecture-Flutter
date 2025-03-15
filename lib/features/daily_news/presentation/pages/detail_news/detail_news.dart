@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clean_arch/features/daily_news/data/models/article_model.dart';
-import 'package:clean_arch/features/daily_news/domain/entities/article.dart';
 import 'package:clean_arch/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:clean_arch/features/daily_news/presentation/bloc/article/local/local_article_event.dart';
 import 'package:clean_arch/features/daily_news/presentation/bloc/article/local/local_article_state.dart';
@@ -14,7 +13,7 @@ class DetailNews extends StatefulWidget {
     required this.article,
   });
 
-  final Article article;
+  final dynamic article;
 
   @override
   State<DetailNews> createState() => _DetailNewsState();

@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clean_arch/features/daily_news/data/models/article_model.dart';
 import 'package:clean_arch/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:clean_arch/features/daily_news/presentation/bloc/article/local/local_article_event.dart';
+import 'package:clean_arch/global/constants/app_routes.dart';
 import 'package:clean_arch/global/generated/fonts.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LocalArticleTile extends StatelessWidget {
   const LocalArticleTile({super.key, required this.article});
@@ -14,29 +16,39 @@ class LocalArticleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsetsDirectional.only(
-        start: 14,
-        end: 14,
-        bottom: 14,
-      ),
-      height: MediaQuery.of(context).size.height / 4,
-      child: Row(
-        children: [
-          _buildImage(context),
-          _buildContent(context),
-          IconButton(
-            onPressed: () {
-              context.read<LocalArticleBloc>().add(
-                    DeleteArticleEvent(id: article.publishedAt),
-                  );
-            },
-            icon: const Icon(
-              Icons.delete_forever_sharp,
-              size: 30,
-            ),
-          )
-        ],
+    return InkWell(
+      onTap: () {
+        context.push(
+          AppRoutes.articleDetailRoute,
+          extra: {
+            "article": article,
+          },
+        );
+      },
+      child: Container(
+        padding: const EdgeInsetsDirectional.only(
+          start: 14,
+          end: 14,
+          bottom: 14,
+        ),
+        height: MediaQuery.of(context).size.height / 4,
+        child: Row(
+          children: [
+            _buildImage(context),
+            _buildContent(context),
+            IconButton(
+              onPressed: () {
+                context.read<LocalArticleBloc>().add(
+                      DeleteArticleEvent(id: article.publishedAt),
+                    );
+              },
+              icon: const Icon(
+                Icons.delete_forever_sharp,
+                size: 30,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
